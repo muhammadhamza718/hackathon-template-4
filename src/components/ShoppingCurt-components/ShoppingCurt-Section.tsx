@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { logos } from "../data/sample_data";
 import ShoppingCurt from "./ShoppingCurt";
 
 export default function ShoppingCurtSection() {

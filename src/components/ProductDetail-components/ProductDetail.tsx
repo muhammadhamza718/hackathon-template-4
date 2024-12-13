@@ -17,17 +17,21 @@ export default function ProductDetail() {
                   "/images/products/Detail-image-3.png",
                   "/images/products/Detail-image-4.png",
                 ].map((imageSrc, index) => (
-                  <img
+                  <Image
                     key={index}
                     src={imageSrc}
+                    width={1000}
+                    height={1000}
                     alt={`Thumbnail ${index + 1}`}
                     className="w-full h-28 object-contain border rounded-md cursor-pointer hover:shadow-md"
                   />
                 ))}
               </div>
               <div className="col-span-3 md:col-span-4 col-start-3">
-                <img
+                <Image
                   src="/images/products/Detail-image-1.png"
+                  width={1000}
+                  height={1000}
                   alt="Product"
                   className="w-full h-full object-contain rounded-md"
                 />
@@ -184,8 +188,10 @@ export default function ProductDetail() {
             },
           ].map((product, index) => (
             <div key={index} className="justify-center flex items-start flex-col gap-2">
-              <img
+              <Image
                 src={product.image}
+                width={1000}
+                height={1000}
                 alt={product.title}
                 className="w-auto h-auto object-contain rounded"
               />

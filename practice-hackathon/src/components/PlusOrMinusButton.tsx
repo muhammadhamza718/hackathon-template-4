@@ -1,9 +1,9 @@
 import React from 'react'
-import { AddToBasketButtonProps } from './Grid-components/ProductGridCard'
 import useBasketStore from '@/store/store';
 import Image from 'next/image';
+import { Product } from '../../sanity.types';
 
-export default function PlusOrMinusButton({ product, disabled }: AddToBasketButtonProps) {
+export default function PlusOrMinusButton({ product }: { product: Product}) {
     const { addItem, removeItem, getItemCount } = useBasketStore();
     const itemCount = getItemCount(product._id);
     
@@ -26,7 +26,7 @@ export default function PlusOrMinusButton({ product, disabled }: AddToBasketButt
                     </span>
                 </button>
                 <span>{itemCount}</span>
-                <button onClick={() => addItem(product)} disabled={disabled}>
+                <button onClick={() => addItem(product)}>
                     <Image
                         src="/images/products/plus.png"
                         alt="Plus icon"

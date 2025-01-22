@@ -207,18 +207,18 @@ export default function ShoppingCurt({ product } : { product : Product}) {
                 <div className="space-y-6">
                   <input
                     type="text"
-                    placeholder="Bangladesh"
-                    className="w-full bg-[#E8E6F1] rounded-md py-2 border-b-2 border-[#dedaec]"
+                    placeholder="Country"
+                    className="w-full bg-[#E8E6F1] px-2 rounded-md py-2 border-b-2 border-[#dedaec]"
                   />
                   <input
                     type="text"
-                    placeholder="Mirpur Dhaka - 1900"
-                    className="w-full bg-[#E8E6F1] rounded-md py-2 border-b-2 border-[#dedaec]"
+                    placeholder="City"
+                    className="w-full bg-[#E8E6F1] px-2 rounded-md py-2 border-b-2 border-[#dedaec]"
                   />
                   <input
                     type="text"
                     placeholder="Postal Code"
-                    className="w-full bg-[#E8E6F1] rounded-md py-2 border-b-2 border-[#dedaec]"
+                    className="w-full bg-[#E8E6F1] px-2 rounded-md py-2 border-b-2 border-[#dedaec]"
                   />
                 </div>
                 <button className="w-1/2 mt-4 bg-pink-500 text-white py-2 rounded-sm hover:bg-pink-600">

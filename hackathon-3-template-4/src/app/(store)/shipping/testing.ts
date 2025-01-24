@@ -19,7 +19,7 @@ export default async function createShipment(req: NextApiRequest, res: NextApiRe
             },
             {
                 headers: {
-                    Authorization: `ShippoToken shippo_test_478bf9a81de70366b8cce0b55166c0a4e2f2b5c5`,
+                    Authorization: `ShippoToken token`,
                     "Content-Type": "application/json",
                 },
             }

@@ -1,11 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Product } from "../../sanity.types"; // sanity type ke folder se
 import imageUrl from "@/lib/imageUrl";
 import Link from "next/link";
+import useBasketStore from "@/store/store";
 
 // ye yahan par product likhna
 export function ProductCard({ product }: { product: Product }) {
+  const { addItem, getItemCount } = useBasketStore();
   const isOutOfStock = product.stockLevel != null && product.stockLevel <= 0;
   return (
     <div
@@ -36,6 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
             className={`absolute top-4 left-4 opacity-0 ${isOutOfStock ? "group-hover:opacity-0" : "group-hover:opacity-100"} transition-opacity`}
           >
             <button
+              onClick={() => addItem(product)}
               className={`p-2 bg-[#F6F7FB] ${isOutOfStock ? "cursor-not-allowed" : ""} rounded-full hover:bg-[#EEEFFB] hover:text-white transition-colors`}
             >
               <Image
@@ -201,13 +206,13 @@ export function ProductCard({ product }: { product: Product }) {
         <div className={`${isOutOfStock ? "group-hover:opacity-0" : ""}`}>
           {product?.isFeaturedProduct && (
             <Link href={`/ProductDetail/${product.slug?.current}`}>
-            <div
-              className={`hidden group-hover:flex absolute bottom-44 left-1/2 transform ${isOutOfStock ? "group-hover:opacity-0" : "group-hover:opacity-100"} -translate-x-1/2 bg-[#08D15F] w-[94px] h-[29px] items-center justify-center rounded-sm hover:bg-[#06B14C] transition-all duration-300`}
-            >
-              <p className="text-white font-josefin text-[12px]">
-                View Details
-              </p>
-            </div>
+              <div
+                className={`hidden group-hover:flex absolute bottom-44 left-1/2 transform ${isOutOfStock ? "group-hover:opacity-0" : "group-hover:opacity-100"} -translate-x-1/2 bg-[#08D15F] w-[94px] h-[29px] items-center justify-center rounded-sm hover:bg-[#06B14C] transition-all duration-300`}
+              >
+                <p className="text-white font-josefin text-[12px]">
+                  View Details
+                </p>
+              </div>
             </Link>
           )}
         </div>

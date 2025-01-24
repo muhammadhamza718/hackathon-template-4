@@ -28,40 +28,40 @@ const HeadingBar = () => {
       {/* Contact Info */}
       <div className="flex flex-wrap gap-3 sm:gap-10 items-center">
         <div className="flex items-center gap-3">
-          <FaRegEnvelope />
-          <span>mhhasanul@gmail.com</span>
+          <FaRegEnvelope size={15} />
+          <span className="font-normal">mhhasanul@gmail.com</span>
         </div>
         <div className="flex items-center gap-3">
-          <FiPhoneCall />
-          <span>(12345)67890</span>
+          <FiPhoneCall size={15} />
+          <span className="font-normal">(12345)67890</span>
         </div>
       </div>
 
       {/* Menu */}
       <div className="mt-2 sm:mt-0 flex flex-wrap items-center gap-3 sm:gap-5">
-        <ul className="flex flex-wrap items-center gap-2 sm:gap-5">
-          <li className="flex items-center">
+        <ul className="flex flex-wrap items-center gap-2 sm:gap-4">
+          <li className="flex font-normal items-center">
             English <RiArrowDropDownLine />
           </li>
-          <li className="flex items-center">
-            US <RiArrowDropDownLine />
+          <li className="flex font-normal items-center">
+            USD <RiArrowDropDownLine />
           </li>
           <li className="flex items-center">
             <ClerkLoaded>
             {user ? (
-              <div className="flex items-center space-x-2">
-                <IoPersonOutline className="pl-1" />
+              <div className="flex font-normal items-center space-x-2">
+                <IoPersonOutline size={20} className="pl-1" />
               </div>
             ) : (
               <SignInButton mode="modal" />
             )}
             </ClerkLoaded>
           </li>
-          <li className="flex items-center">
-            Wishlist <MdOutlineFavoriteBorder className="pl-1" />
+          <li className="flex font-normal items-center">
+            Wishlist <MdOutlineFavoriteBorder size={20} className="pl-1" />
           </li>
           <Link href={"/ShoppingCurt"} className="flex relative items-center">
-            <IoCartOutline size={28} /><span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">{itemCount}</span>
+            <IoCartOutline size={22} /><span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">{itemCount}</span>
           </Link>
         </ul>
       </div>

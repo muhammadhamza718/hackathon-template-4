@@ -26,7 +26,7 @@ export default function ShopGridSection({ product} : { product: Product[] }) {
       </div>
     </section>
     <ProductGridCard product={product}/>
-    <section className="py-8">
+    <section className="py-8 hidden md:block">
       <div className="container mx-auto px-4">
         <div className="flex justify-center items-center flex-wrap gap-6">
           {logos.map((logo, index) => (

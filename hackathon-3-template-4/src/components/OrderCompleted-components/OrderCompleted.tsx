@@ -3,8 +3,8 @@ import React from "react";
 
 export default function OrderCompleted() {
   return (
-    <section className="min-h-maxflex flex-col items-center justify-center my-48 bg-white text-center p-6">
-      <div className="flex relative items-center w-1/2 mx-auto border-b-2 border-l-2 border-dashed pb-20 justify-center gap-8">
+    <section className="min-h-max flex flex-col items-center justify-center my-48 bg-white text-center p-2 sm:p-6">
+      <div className="flex relative items-center w-3/4 sm:w-1/2 sm:mx-auto border-b-2 border-l-2 border-dashed pb-20 justify-center gap-8">
         <div>
           <Image
             src="/images/products/clock-1.png"

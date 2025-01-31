@@ -40,7 +40,7 @@ export default function page() {
             <Link href="/">Back To Home</Link>
           </div>
         </div>
-        <section className="py-8">
+        <section className="py-8 hidden md:block">
           <div className="container mx-auto px-4">
             <div className="flex justify-center items-center flex-wrap gap-6">
               {logos.map((logo, index) => (

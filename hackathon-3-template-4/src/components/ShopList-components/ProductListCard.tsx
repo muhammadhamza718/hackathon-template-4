@@ -177,8 +177,8 @@ export default function ProductList({ product }: { product: Product[], }) {
 
               {/* Product details */}
               <div className="flex flex-col justify-center w-full h-full lg:w-2/3 gap-2">
-                <div className="flex justify-start items-center">
-                  <h3 className="josefin font-semibold text-[#151875] text-lg w-1/4">
+                <div className="flex justify-start gap-4 items-center">
+                  <h3 className="josefin font-semibold truncate text-[#151875] text-lg w-3/5 md:w-1/4">
                     {product?.name}
                   </h3>
                   <div className="flex items-center gap-2 my-2">

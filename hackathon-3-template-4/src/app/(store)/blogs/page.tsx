@@ -285,37 +285,35 @@ export default function Blogs() {
                   <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4">
                     {relProdBlog.map((item) => {
                       return (
-                        <Link href={`${item.href}/${item.name}`} key={item.id}>
-                          <div key={item.id}>
-                            <div className="col-span-1">
-                              <div className="w-full mb-4">
-                                <div className="flex justify-center w-full">
-                                  <Image
-                                    src={item.pic}
-                                    alt="img"
-                                    width={1000}
-                                    height={1000}
-                                    className="object-cover w-full h-auto lg:h-52 md:h-40 sm:h-32"
-                                  />
-                                </div>
-                                <div>
-                                  <p className="mx-3 font-josefin font-semibold text-sm">
-                                    {item.name}
-                                  </p>
-                                </div>
-                                <div className="flex justify-between text-[#151875] my-1 items-center text-xs">
-                                  <p className="text-[#151875] font-josefin font-semibold">
-                                    {item.Price}
-                                  </p>
-                                  <p className="text-pink-500 font-josefin font-semibold line-through">
-                                    {item.oldPrice}
-                                  </p>
-                                  <div>{item.Rating}</div>
-                                </div>
+                        <div key={item.id}>
+                          <div className="col-span-1">
+                            <div className="w-full mb-4">
+                              <div className="flex justify-center w-full">
+                                <Image
+                                  src={item.pic}
+                                  alt="img"
+                                  width={1000}
+                                  height={1000}
+                                  className="object-cover w-full h-auto lg:h-52 md:h-40 sm:h-32"
+                                />
+                              </div>
+                              <div>
+                                <p className="mx-3 font-josefin font-semibold text-sm">
+                                  {item.name}
+                                </p>
+                              </div>
+                              <div className="flex justify-between text-[#151875] my-1 items-center text-xs">
+                                <p className="text-[#151875] font-josefin font-semibold">
+                                  {item.Price}
+                                </p>
+                                <p className="text-pink-500 font-josefin font-semibold line-through">
+                                  {item.oldPrice}
+                                </p>
+                                <div>{item.Rating}</div>
                               </div>
                             </div>
                           </div>
-                        </Link>
+                        </div>
                       );
                     })}
                   </div>
@@ -464,7 +462,7 @@ export default function Blogs() {
                       required
                     />
                     <span className="absolute items-center top-[18px] left-3">
-                        <TbMailFilled className="h-4 w-4 text-[#8A8FB9]" />
+                      <TbMailFilled className="h-4 w-4 text-[#8A8FB9]" />
                     </span>
                   </div>
                 </div>

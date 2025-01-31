@@ -2,6 +2,13 @@ import Image from "next/image";
 import React from "react";
 
 export default function HektoDemo() {
+  const images = [
+    "/images/products/demo-image-1.png",
+    "/images/products/demo-image-2.png",
+    "/images/products/demo-image-3.png",
+    "/images/products/demo-image-4.png",
+    "/images/products/demo-image-5.png",
+  ];
   return (
     <section className="min-h-screen pt-16 pb-60 font-lato flex justify-center">
       <div>
@@ -97,18 +104,18 @@ export default function HektoDemo() {
           {/* Right Side: Cart Summary */}
           <div className="bg-white rounded-lg shadow">
             <div className="space-y-4">
-              {[...Array(5)].map((_, index) => (
+              {images.map((images, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between border-b pb-8"
+                  className="flex items-center justify-between border-b pb-4"
                 >
                   <div className="flex items-center gap-4">
                     <Image
-                      src="https://via.placeholder.com/50"
+                      src={images}
                       alt="Product"
                       width={100}
                       height={100}
-                      className="w-12 h-12 object-cover rounded"
+                      className="w-16 h-16 object-cover rounded"
                     />
                     <div>
                       <p className="text-sm font-semibold font-josefin text-[#1D3178]">

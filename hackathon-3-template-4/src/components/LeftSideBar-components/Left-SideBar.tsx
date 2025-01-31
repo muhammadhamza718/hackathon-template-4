@@ -293,16 +293,16 @@ export default function LeftSideBar() {
           <div
             className={`grid ${
               view === "grid"
-                ? "grid-cols-1 grid-rows-7 gap-6 w-[72%]"
+                ? "grid-cols-1 grid-rows-7 gap-6 w-full"
                 : "grid-cols-1 grid-rows-7 gap-4 w-full"
             }`}
           >
             {sortedProducts.slice(0, perPage).map((product) => (
               <div
                 key={product.id}
-                className="group flex flex-col lg:flex-row justify-start items-start h-max bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
+                className="group flex flex-col lg:flex-row justify-start items-start h-full w-full bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
               >
-                <div className="relative w-full lg:w-1/3 h-52">
+                <div className="relative w-full sm:w-[60%] md:w-[45%] justify-start lg:w-1/3 h-44 sm:h-52">
                   {/* Image */}
                   <Image
                     src={product.image}
@@ -315,8 +315,8 @@ export default function LeftSideBar() {
 
                 {/* Product details */}
                 <div className="flex flex-col justify-center w-full h-auto lg:w-2/3 gap-2">
-                  <div className="flex justify-start items-center">
-                    <h3 className="josefin font-semibold text-[#151875] text-base w-[30%]">
+                  <div className="flex justify-start gap-4 items-center">
+                    <h3 className="josefin font-semibold truncate text-[#151875] text-base w-[30%]">
                       {product.name}
                     </h3>
                     <div className="flex items-center gap-2 my-2">

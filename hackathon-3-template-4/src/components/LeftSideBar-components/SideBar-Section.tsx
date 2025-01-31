@@ -25,7 +25,7 @@ export default function SideBarSection() {
       </div>
     </section>
     <LeftSideBar />
-    <section className="py-8">
+    <section className="py-8 hidden md:block">
       <div className="container mx-auto px-4">
         <div className="flex justify-center items-center flex-wrap gap-6">
           {logos.map((logo, index) => (

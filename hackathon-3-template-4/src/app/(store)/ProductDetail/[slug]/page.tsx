@@ -42,7 +42,7 @@ export default async function page({ params }: { params: Promise<{ slug: string 
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="flex flex-col md:flex-row items-start gap-6 p-6 lg:p-8">
             {/* Image Section */}
-            <div className="w-full md:w-1/2 flex justify-center">
+            <div className="w-full md:w-1/2 h-full flex justify-center">
               <div className="relative">
                 {product.image && (
                   <Image
@@ -157,7 +157,7 @@ export default async function page({ params }: { params: Promise<{ slug: string 
       {/* Related Products */}
       <div className="max-w-7xl mx-auto py-8 lg:py-16 px-4 lg:px-6">
         <h2 className="text-2xl lg:text-3xl font-bold text-[#151875] mb-8">Related Products</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <ProductCard key={product._id} product={product} />
         </div>
       </div>

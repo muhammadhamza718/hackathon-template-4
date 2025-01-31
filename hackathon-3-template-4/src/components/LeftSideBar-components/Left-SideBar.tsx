@@ -122,7 +122,7 @@ export default function LeftSideBar() {
 
         {/* Product Grid with Pagination */}
         <div className="flex w-full justify-between">
-          <div className="w-1/4">
+          <div className="w-1/4 hidden md:block">
             {/* Product Brand */}
             <div className="mb-6">
               <h3 className="font-bold text-[#151875] text-lg border-b-2 border-black pb-1 josefin w-[52%]">
@@ -293,14 +293,14 @@ export default function LeftSideBar() {
           <div
             className={`grid ${
               view === "grid"
-                ? "grid-cols-1 gap-6 w-[72%]"
-                : "grid-cols-1 gap-4 w-full"
+                ? "grid-cols-1 grid-rows-7 gap-6 w-[72%]"
+                : "grid-cols-1 grid-rows-7 gap-4 w-full"
             }`}
           >
             {sortedProducts.slice(0, perPage).map((product) => (
               <div
                 key={product.id}
-                className="group flex flex-col lg:flex-row justify-start items-start bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
+                className="group flex flex-col lg:flex-row justify-start items-start h-max bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
               >
                 <div className="relative w-full lg:w-1/3 h-52">
                   {/* Image */}
@@ -314,7 +314,7 @@ export default function LeftSideBar() {
                 </div>
 
                 {/* Product details */}
-                <div className="flex flex-col justify-center w-full h-full lg:w-2/3 gap-2">
+                <div className="flex flex-col justify-center w-full h-auto lg:w-2/3 gap-2">
                   <div className="flex justify-start items-center">
                     <h3 className="josefin font-semibold text-[#151875] text-base w-[30%]">
                       {product.name}

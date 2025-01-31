@@ -49,7 +49,7 @@ export default function RootLayout({
         >
           <HeadingBar />
           <Navbar />
-          <div className="max-w-[1920px] mx-auto">{children}</div>
+          <div>{children}</div>
           <Footer />
           <FooterHeadingBar />
         </body>

@@ -12,7 +12,7 @@ export function LatestProducts({ products }: { products: Product[] }) {
   const latestProducts = products.slice(0, 6);
 
   return (
-    <section className="container mx-auto py-8 md:py-12 lg:py-16 px-4">
+    <section className="container mx-auto py-16 md:py-12 lg:py-16 px-4">
       <h2 className="text-3xl md:text-4xl lg:text-[42px] text-[#151875] font-josefin font-bold text-center mb-6 md:mb-8">
         Latest Products
       </h2>

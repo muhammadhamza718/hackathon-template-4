@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Product } from "../../../sanity.types";
 import imageUrl from "@/lib/imageUrl";
 import useBasketStore from "@/store/store";
+import Link from "next/link";
 
 export default function ProductGridCard({ product }: { product: Product[], }) {
   const [sortOption, setSortOption] = useState("Best Match");
@@ -19,7 +20,7 @@ export default function ProductGridCard({ product }: { product: Product[], }) {
     return null;
   }
   console.log(itemCount);
-  
+
 
   // Sorting logic
   const sortedProducts = product.slice().sort((a, b) => {
@@ -143,22 +144,24 @@ export default function ProductGridCard({ product }: { product: Product[], }) {
           className={`grid ${view === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" : "grid-cols-1 gap-4"}`}
         >
           {sortedProducts.slice(0, perPage).map((product) => (
-            // <Link href={`/ProductDetail/${product.slug?.current}`}>
+
             <div
               key={product._id}
               className={`group flex flex-col justify-center items-center ${product.stockLevel != null && product.stockLevel <= 0 ? "opacity-50 cursor-not-allowed" : ""} bg-white overflow-hidden p-2`}
             >
               <div className={`relative h-64 w-full`}>
                 {/* Image with hover effect */}
-                {product.image && (
-                  <Image
-                    src={imageUrl(product.image).url()}
-                    alt={product.name || "Product Name"}
-                    className="object-contain p-8 bg-[#F6F7FB] group-hover:bg-[#EBF4F3] transition-all duration-300"
-                    fill
-                    sizes="100vw"
-                  />
-                )}
+                <Link href={`/ProductDetail/${product.slug?.current}`}>
+                  {product.image && (
+                    <Image
+                      src={imageUrl(product.image).url()}
+                      alt={product.name || "Product Name"}
+                      className="object-contain p-8 bg-[#F6F7FB] group-hover:bg-[#EBF4F3] transition-all duration-300"
+                      fill
+                      sizes="100vw"
+                    />
+                  )}
+                </Link>
                 {product.stockLevel != null && product.stockLevel <= 0 && (
                   <div className="absolute inset-0 flex z-10 items-center justify-center bg-gray-700 bg-opacity-50">
                     <span className="text-white font-bold text-3xl">
@@ -296,7 +299,6 @@ export default function ProductGridCard({ product }: { product: Product[], }) {
                 </div>
               </div>
             </div>
-            // </Link>
           ))}
         </div>
       </div>

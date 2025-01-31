@@ -7,7 +7,7 @@ interface TabProps {
 export function ProductTabs({ tabs, activeTab, onTabChange }: TabProps) {
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-16 mb-8 px-2">
+      <div className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-16 mb-10 px-2">
         {tabs.map((tab) => (
           <button
             key={tab}

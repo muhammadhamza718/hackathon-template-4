@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full md:max-w-[1920px] h-auto flex flex-wrap items-center justify-around font-lato mx-auto px-4 my-5">
+    <div className="w-full h-auto flex flex-wrap items-center justify-around font-lato mx-auto px-4 my-5">
       {/* Brand */}
       <div className="font-josefin text-[28px] sm:text-[34px] font-bold mb-4 sm:mb-0">
         <span onClick={() => window.location.href = '/'} className="hover:cursor-pointer">Hekto</span>

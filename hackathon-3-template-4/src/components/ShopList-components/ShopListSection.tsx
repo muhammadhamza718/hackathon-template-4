@@ -2,10 +2,11 @@ import React from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import { logos } from "../data/sample_data";
-import ProductList from "./ProductList";
+import ProductList from "./ProductListCard";
+import { Product } from '../../../sanity.types';
 
 
-export default function ShopListSection() {
+export default function ShopListSection({ product} : { product: Product[] }) {
   return (<>
     <section className="w-full bg-[#F6F5FF]">
       <div className="max-w-7xl mx-auto py-24 px-6 ">
@@ -25,7 +26,7 @@ export default function ShopListSection() {
         </nav>
       </div>
     </section>
-    <ProductList />
+    <ProductList product={product} />
     <section className="py-8">
       <div className="container mx-auto px-4">
         <div className="flex justify-center items-center flex-wrap gap-6">

@@ -8,7 +8,7 @@ import { Product } from "../../sanity.types";
 const TrendingProducts = ({ products }: { products: Product[] }) => {
   const latestProducts = products.slice(0, 4);
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
+    <div className="container mx-auto px-4 py-16 md:py-12 lg:py-16">
       <h2 className="font-josefin font-bold text-2xl md:text-3xl lg:text-[42px] mb-8 text-center text-[#151875]">
         Trending Products
       </h2>

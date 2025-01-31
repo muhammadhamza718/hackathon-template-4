@@ -4,7 +4,7 @@ import { shopexOffers } from "./data/sample_data";
 
 export function ShopexOffer() {
   return (
-    <section className="py-8 md:py-12 lg:py-16 mt-8 md:mt-12">
+    <section className="py-16 md:py-12 lg:py-16 md:mt-12">
       <h2 className="text-3xl md:text-4xl lg:text-[42px] text-[#1A0B5B] font-josefin text-center mb-8 md:mb-12">
         What Shopex Offer!
       </h2>

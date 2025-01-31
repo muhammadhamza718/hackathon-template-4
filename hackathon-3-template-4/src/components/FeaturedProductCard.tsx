@@ -9,7 +9,7 @@ import useBasketStore from "@/store/store";
 
 // ye yahan par product likhna
 export function ProductCard({ product }: { product: Product }) {
-  const { addItem, getItemCount } = useBasketStore();
+  const { addItem } = useBasketStore();
   const isOutOfStock = product.stockLevel != null && product.stockLevel <= 0;
   return (
     <div
@@ -203,9 +203,9 @@ export function ProductCard({ product }: { product: Product }) {
         </Link>
       )}
       {isOutOfStock && (
-        <div className={`${isOutOfStock ? "group-hover:opacity-0" : ""}`}>
+        <div className={`${isOutOfStock ? "group-hover:opacity-0 cursor-not-allowed" : ""}`}>
           {product?.isFeaturedProduct && (
-            <Link href={`/ProductDetail/${product.slug?.current}`}>
+            <Link href={`/`} className={`${isOutOfStock ? "cursor-not-allowed" : ""}`}>
               <div
                 className={`hidden group-hover:flex absolute bottom-44 left-1/2 transform ${isOutOfStock ? "group-hover:opacity-0" : "group-hover:opacity-100"} -translate-x-1/2 bg-[#08D15F] w-[94px] h-[29px] items-center justify-center rounded-sm hover:bg-[#06B14C] transition-all duration-300`}
               >

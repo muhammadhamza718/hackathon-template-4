@@ -3,14 +3,14 @@ import Image from "next/image";
 
 export default function SubscribeSection() {
   return (
-    <section className="relative w-full h-[400px] sm:h-[500px]">
+    <section className="relative w-full hidden lg:block h-[400px] sm:h-[500px]">
       <div className="absolute inset-0 -z-10">
         <Image
           src="/images/products/background-image.png"
           alt="Background"
           width={1920}
           height={1080}
-          className="object-cover"
+          className="object-contain xl:object-cover mx-auto w-full h-full"
           priority
           />
       </div>

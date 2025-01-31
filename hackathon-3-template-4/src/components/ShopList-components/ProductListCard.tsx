@@ -1,35 +1,63 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Listedproducts as initialProducts } from "../data/sample_data";
+import { Product } from "../../../sanity.types";
+import imageUrl from "@/lib/imageUrl";
+import useBasketStore from "@/store/store";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import Loader from "../Loader";
+import useWishListStore from "@/store/WishListStore";
 
-export default function ProductGrid() {
-  const [sortOption, setSortOption] = useState("Best Match");
-  const [perPage, setPerPage] = useState(12);
-  const [view, setView] = useState("grid");
+export default function ProductList({ product }: { product: Product[], }) {
+  const groupItems = useBasketStore((state) => state.getGroupedItems());
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+  const { addItem, getItemCount } = useWishListStore();
+  const itemCount = getItemCount(product[0]?._id);
+    const [sortOption, setSortOption] = useState("Best Match");
+    const [perPage, setPerPage] = useState(12);
+    const [view, setView] = useState("grid");
+  console.log("itemCount", itemCount, "isSignedIn", isSignedIn, "route", router);
+  useEffect(() => {
+      setIsClient(true);
+    }, []);
+    if (!isClient) {
+      return <Loader />;
+    }
+  
+    if (groupItems.length === 0) {
+      return (
+        <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6">Your basket</h1>
+          <p className="text-gray-600 text-lg">Your basket is empty</p>
+        </div>
+      );
+    }
 
   // Sorting logic
-  const sortedProducts = [...initialProducts].sort((a, b) => {
+  const sortedProducts = product?.slice().sort((a, b) => {
     switch (sortOption) {
       case "Price: Low to High":
         return (
-          parseFloat(a.price.replace("$", "")) -
-          parseFloat(b.price.replace("$", ""))
+          parseFloat((a.price ?? "").replace("$", "")) -
+          parseFloat((b.price ?? "").replace("$", ""))
         );
       case "Price: High to Low":
         return (
-          parseFloat(b.price.replace("$", "")) -
-          parseFloat(a.price.replace("$", ""))
+          parseFloat((b.price ?? "").replace("$", "")) -
+          parseFloat((a.price ?? "").replace("$", ""))
         );
       case "Newest First":
-        return b.id - a.id;
+        return new Date(b._id).getTime() - new Date(a._id).getTime();
       default:
         return 0;
     }
   });
 
   return (
-    <section className="w-full bg-white py-4 mb-32">
+    <section className="w-full bg-white py-4">
       <div className="max-w-7xl mx-auto px-4 flex flex-col gap-24 pt-24">
         {/* Sorting and Controls */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-6">
@@ -58,7 +86,7 @@ export default function ProductGrid() {
                 value={perPage}
                 onChange={(e) => setPerPage(Number(e.target.value))}
                 min={1}
-                max={initialProducts.length}
+                max={product?.length}
               />
             </div>
 
@@ -97,8 +125,9 @@ export default function ProductGrid() {
                   height={20}
                   style={{
                     maxWidth: "100%",
-                    height: "auto"
-                  }} />
+                    height: "auto",
+                  }}
+                />
               </button>
               <button
                 className={`${view === "list" ? "text-blue-500" : ""}`}
@@ -111,39 +140,46 @@ export default function ProductGrid() {
                   height={20}
                   style={{
                     maxWidth: "100%",
-                    height: "auto"
-                  }} />
+                    height: "auto",
+                  }}
+                />
               </button>
+              <input
+                id="perPage"
+                type="number"
+                className="w-32 border ml-4 border-[#E7E6EF] text-[#8A8FB9] rounded p-1 focus:outline-none"
+              />
             </div>
           </div>
         </div>
-
         {/* Product Grid */}
         <div
-          className={`grid ${
-            view === "grid" ? "grid-cols-1 gap-6" : "grid-cols-1 gap-4"
-          }`}
+          className={`grid ${view === "grid" ? "grid-cols-1 gap-6" : "grid-cols-1 gap-4"
+            }`}
         >
           {sortedProducts.slice(0, perPage).map((product) => (
             <div
-              key={product.id}
+              key={product?._id}
               className="group flex flex-col lg:flex-row justify-start items-start bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
             >
               <div className="relative w-full lg:w-1/4 h-52">
                 {/* Image */}
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  className="object-contain rounded-lg"
-                  fill
-                  sizes="100vw" />
+                {product.image && (
+                  <Image
+                    src={imageUrl(product?.image).url()}
+                    alt={product.name || "Product Image"}
+                    className="object-contain rounded-lg"
+                    fill
+                    sizes="100vw"
+                  />
+                )}
               </div>
 
               {/* Product details */}
               <div className="flex flex-col justify-center w-full h-full lg:w-2/3 gap-2">
                 <div className="flex justify-start items-center">
                   <h3 className="josefin font-semibold text-[#151875] text-lg w-1/4">
-                    {product.name}
+                    {product?.name}
                   </h3>
                   <div className="flex items-center gap-2 my-2">
                     <div className="h-3 w-3 rounded-full bg-[#DE9034]"></div>
@@ -155,13 +191,29 @@ export default function ProductGrid() {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
                   in est <br /> adipiscing in phasellus non in justo.
                 </p>
+                <div className="flex justify-between items-center gap-4">
+                  {itemCount}
+                </div>
                 <div className="josefin flex justify-start items-center gap-2">
-                  <span className="text-[#151875] font-bold">
-                    {product.price}
-                  </span>
-                  <span className="text-[#FB2E86] line-through">
-                    {product.oldPrice}
-                  </span>
+                {product?.isOnSale ? (
+                    <>
+                      <span className="text-sm md:text-base font-josefin font-semibold">
+                        $
+                        {(
+                          (parseFloat(product.price ?? "0") *
+                            (100 - (product.discountPercentage || 0))) /
+                          100
+                        ).toFixed(2)}
+                      </span>
+                      <span className="text-[#FB2448] text-xs font-josefin font-semibold ml-2 md:text-sm line-through">
+                        ${product?.price}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-sm md:text-base font-josefin font-semibold">
+                      ${product?.price}
+                    </span>
+                  )}
                 </div>
                 <div className="flex gap-4">
                   <button className="p-2 bg-transparent rounded-full hover:bg-white">
@@ -203,6 +255,6 @@ export default function ProductGrid() {
           ))}
         </div>
       </div>
-    </section>)
-  ;
+    </section>
+  );
 }

@@ -17,7 +17,7 @@ const HeadingBar = () => {
   const itemCount = useBasketStore((state) => state.items.reduce((total,item) => total + item.quantity, 0));
   return (
     <div
-      className="w-full md:max-w-[1920px] h-auto py-2 flex flex-wrap items-center justify-around font-josefin px-4 mx-auto"
+      className="w-full h-auto py-2 flex flex-wrap items-center justify-around font-josefin px-4 mx-auto"
       style={{
         backgroundColor: colors.violet,
         color: colors.white,

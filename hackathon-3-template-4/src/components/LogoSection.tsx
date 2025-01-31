@@ -4,7 +4,7 @@ import { logos } from "./data/sample_data";
 
 export default function LogoSection() {
   return (
-    <section className="py-8">
+    <section className="py-8 hidden lg:block">
       <div className="container mx-auto px-4">
         <div className="flex justify-center items-center flex-wrap gap-6">
           {logos.map((logo, index) => (

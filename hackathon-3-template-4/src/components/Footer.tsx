@@ -1,17 +1,17 @@
 import colors from "./utils/colors";
 import React from "react";
-import SearchFieldWithSignUp from "./SearchFieldWithSignUp";
+import SearchField from "./SearchField";
 
 const Footer = () => {
   return (
     <div
-      className="max-w-[1920px] min-h-[479px] py-8 md:py-12 lg:h-[479px] flex items-center justify-around font-lato mx-auto"
+      className="w-full min-h-[479px] py-8 md:py-12 lg:h-[479px] flex items-center justify-around font-lato mx-auto"
       style={{
         backgroundColor: colors.skyBlue,
         color: colors.subTextColor,
       }}
     >
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 px-4 md:px-8 lg:px-0">
+      <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16 px-4 md:px-8 lg:px-0">
         {/* Hekto Section */}
         <div className="w-full md:w-auto max-w-sm mx-auto md:mx-0">
           <div className="font-josefin text-2xl md:text-[38px] pb-4 md:pb-5 text-black text-center md:text-left">
@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
 
           <div className="pb-4 md:pb-5">
-            <SearchFieldWithSignUp />
+            <SearchField />
           </div>
 
           <div className="flex flex-col text-sm md:text-[16px] text-center md:text-left space-y-2">

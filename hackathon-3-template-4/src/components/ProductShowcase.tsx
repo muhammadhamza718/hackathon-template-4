@@ -38,9 +38,9 @@ export const ProductShowcase = () => {
             {/* Product Image */}
             <div className="relative flex-shrink-0 w-full max-w-[509px]">
               <div
-                className="absolute -top-4 -right-4 md:top-10 md:right-10 
-                w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] 
-                md:w-[448px] md:h-[448px]  
+                className="absolute top-2 left-0 sm:top-8 sm:left-0 md:top-10 md:right-14 
+                w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] 
+                md:w-[488px] md:h-[488px]  
                 bg-[#F5E1FC] rounded-full"
               />
               <div className="relative">

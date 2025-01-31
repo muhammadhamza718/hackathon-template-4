@@ -45,10 +45,10 @@ export default function Home() {
 
             {/* Hero Image */}
             <div className="relative flex-shrink-0 mt-8 lg:mt-0">
-              <div className="absolute -top-8 -right-8 w-[320px] h-[320px] sm:w-[448px] sm:h-[448px] lg:w-[648px] lg:h-[648px] bg-[#ECD2FA59] rounded-full"></div>
-              <div className="absolute -top-4 -right-4 w-[320px] h-[320px] sm:w-[451px] sm:h-[451px] lg:w-[651px] lg:h-[651px] bg-[#ECD2FA59] rounded-full"></div>
+              <div className="absolute -top-4 -right-4 sm:-top-4 sm:-right-4 w-[320px] h-[320px] sm:w-[448px] sm:h-[448px] lg:w-[648px] lg:h-[648px] bg-[#ECD2FA59] rounded-full"></div>
+              <div className="absolute -top-2 -right-2 sm:-top-0 sm:-right-0 w-[320px] h-[320px] sm:w-[451px] sm:h-[451px] lg:w-[651px] lg:h-[651px] bg-[#ECD2FA59] rounded-full"></div>
 
-              <div className="absolute top-4 right-4 lg:right-[-45px] lg:top-[5px] bg-[#00C1FE] text-white text-[25px] lg:text-[35px] font-josefin font-bold px-4 py-2 lg:px-6 lg:py-4 rounded-full z-10">
+              <div className="absolute top-4 right-4 lg:right-[-0px] lg:top-[5px] bg-[#00C1FE] text-white text-[25px] lg:text-[35px] font-josefin font-bold px-4 py-2 lg:px-6 lg:py-4 rounded-full z-10">
                 50% <br /> off
               </div>
 

@@ -1,4 +1,4 @@
-import ProductGridCard from "@/components/Grid-components/ProductGridCard";
+import ShopGridSection from "@/components/Grid-components/ShopGridSection";
 import { searchProductsBySlug } from "@/sanity/lib/products/searchProductsBySlug";
 import React from "react";
 
@@ -30,11 +30,8 @@ export default async function SearchPage({
   return (
     <>
       <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 w-full">
-        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-full mx-auto">
-          <h1 className="text-3xl font-bold mb-6 text-center">
-            Search results for {query}
-          </h1>
-          <ProductGridCard product={products} />
+        <div className="bg-white rounded-lg shadow-md w-full max-w-full mx-auto">
+          <ShopGridSection product={products} />
         </div>
       </div>
     </>

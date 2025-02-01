@@ -178,7 +178,7 @@ export default function ShoppingCurt({ product }: { product: Product }) {
             {/* Cart Totals and Calculate Shipping */}
             <div className="space-y-8 col-span-2">
               {/* Cart Totals */}
-              <div className="w-full sticky lg:top-4 h-fit p-6 order-first lg:order-last bottom-0 left-0 lg:left-auto">
+              <div className="w-full sticky lg:top-4 h-fit p-0 order-first lg:order-last bottom-0 left-0 lg:left-auto">
                 <div className="mb-6">
                   <h3 className="text-xl text-center text-[#1D3178] font-bold mb-4">Cart Totals</h3>
                   <div className="p-6 py-8 bg-[#E8E6F1] rounded-md">

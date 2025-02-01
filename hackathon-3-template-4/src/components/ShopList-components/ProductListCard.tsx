@@ -4,37 +4,36 @@ import Image from "next/image";
 import { Product } from "../../../sanity.types";
 import imageUrl from "@/lib/imageUrl";
 import useBasketStore from "@/store/store";
-import { useAuth } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 import Loader from "../Loader";
-import useWishListStore from "@/store/WishListStore";
+import Link from "next/link";
+import ItemCount from "../ItemCount";
 
 export default function ProductList({ product }: { product: Product[], }) {
+  const isOutOfStock = product.some(p => p.stockLevel != null && p.stockLevel <= 0);
   const groupItems = useBasketStore((state) => state.getGroupedItems());
-  const { isSignedIn } = useAuth();
-  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const { addItem, getItemCount } = useWishListStore();
+  const { addItem, getItemCount } = useBasketStore();
   const itemCount = getItemCount(product[0]?._id);
-    const [sortOption, setSortOption] = useState("Best Match");
-    const [perPage, setPerPage] = useState(12);
-    const [view, setView] = useState("grid");
-  console.log("itemCount", itemCount, "isSignedIn", isSignedIn, "route", router);
+  const [sortOption, setSortOption] = useState("Best Match");
+  const [perPage, setPerPage] = useState(12);
+  const [view, setView] = useState("grid");
+
+  console.log("itemCount", itemCount);
   useEffect(() => {
-      setIsClient(true);
-    }, []);
-    if (!isClient) {
-      return <Loader />;
-    }
-  
-    if (groupItems.length === 0) {
-      return (
-        <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">Your basket</h1>
-          <p className="text-gray-600 text-lg">Your basket is empty</p>
-        </div>
-      );
-    }
+    setIsClient(true);
+  }, []);
+  if (!isClient) {
+    return <Loader />;
+  }
+
+  if (groupItems.length === 0) {
+    return (
+      <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Your basket</h1>
+        <p className="text-gray-600 text-lg">Your basket is empty</p>
+      </div>
+    );
+  }
 
   // Sorting logic
   const sortedProducts = product?.slice().sort((a, b) => {
@@ -157,11 +156,13 @@ export default function ProductList({ product }: { product: Product[], }) {
           className={`grid ${view === "grid" ? "grid-cols-1 gap-6" : "grid-cols-1 gap-4"
             }`}
         >
+
           {sortedProducts.slice(0, perPage).map((product) => (
             <div
               key={product?._id}
-              className="group flex flex-col lg:flex-row justify-start items-start bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]"
+              className={`group relative flex flex-col lg:flex-row justify-start items-start ${product.stockLevel != null && product.stockLevel <= 0 ? "opacity-50 cursor-not-allowed hover:bg-white" : ""}  bg-white overflow-hidden p-4 gap-6 hover:bg-[#EBF4F3]`}
             >
+              <div className={`${product.stockLevel != null && product.stockLevel <= 0 && (`absolute inset-0 flex z-10 items-center justify-center bg-gray-700 bg-opacity-50`)}`}></div>
               <div className="relative w-full lg:w-1/4 h-52">
                 {/* Image */}
                 {product.image && (
@@ -172,6 +173,11 @@ export default function ProductList({ product }: { product: Product[], }) {
                     fill
                     sizes="100vw"
                   />
+                )}
+                {product.stockLevel != null && product.stockLevel <= 0 && (
+                  <span className="absolute flex items-center justify-center inset-0 z-10 text-white font-bold text-3xl">
+                    Out of Stock
+                  </span>
                 )}
               </div>
 
@@ -191,11 +197,11 @@ export default function ProductList({ product }: { product: Product[], }) {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
                   in est <br /> adipiscing in phasellus non in justo.
                 </p>
-                <div className="flex justify-between items-center gap-4">
-                  {itemCount}
+                <div>
+                  <ItemCount product={[product]} />
                 </div>
                 <div className="josefin flex justify-start items-center gap-2">
-                {product?.isOnSale ? (
+                  {product?.isOnSale ? (
                     <>
                       <span className="text-sm md:text-base font-josefin font-semibold">
                         $
@@ -215,8 +221,17 @@ export default function ProductList({ product }: { product: Product[], }) {
                     </span>
                   )}
                 </div>
+                <Link href={`/ProductDetail/${product.slug?.current}`}>
+                  <div
+                    className={`flex bg-[#08D15F] w-[94px] h-[29px] items-center justify-center rounded-sm hover:bg-[#06B14C] transition-all duration-300`}
+                  >
+                    <p className="text-white font-josefin text-[12px]">
+                      View Details
+                    </p>
+                  </div>
+                </Link>
                 <div className="flex gap-4">
-                  <button className="p-2 bg-transparent rounded-full hover:bg-white">
+                  <button onClick={() => addItem(product)} className="p-2 bg-transparent rounded-full hover:bg-white">
                     <Image
                       src="/images/products/cart.png"
                       alt="Add to Cart"
